@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+          <span class="fs-4">IT OVERONE</span>
+      </a>
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Main Page</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Information</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="mytemplate">My template</a>
+      </nav>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6 offset-1">
+                <h2>Weather in your city and not only!</h2>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <label for="city">City</label>
+                    {{ form.name }}
+                    <input type="submit" name="send" value="Want to know" class="mt-2 btn btn-danger">
+                </form>
+            </div>
+            <div class="col-4 offset-1">
+                <h2>Information</h2>
+                {% for info in all_info %}
+                <div class="alert alert-info">
+                    <div class="row">
+                        <div class="col-9">
+                            <b>City:</b>{{ info.city }}<br>
+                            <b>Temperature:</b>{{ info.temp }}<sup>0</sup><br>
+                        </div>
+                        <div class="col-2 offset-1">
+                            <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Photo weather">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
